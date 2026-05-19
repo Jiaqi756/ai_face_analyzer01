@@ -176,10 +176,10 @@ if uploaded_file is not None:
     st.markdown('<div class="card">', unsafe_allow_html=True)
 
     st.image(
-        landmark_image,
-        caption=f"检测到 {len(faces)} 张人脸",
-        use_container_width=True
-    )
+    landmark_image,
+    caption=f"检测到 {len(faces)} 张人脸",
+    width=700
+)
 
     st.success("AI 面部关键点检测完成！")
 
