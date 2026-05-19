@@ -6,3 +6,6 @@ matplotlib
 mediapipe==0.10.14
 scikit-image
 scikit-learn
+torch==2.2.2
+torchvision==0.17.2
+git+https://github.com/openai/CLIP.git
