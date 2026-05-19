@@ -1,17 +1,22 @@
-from insightface.app import FaceAnalysis
+import mediapipe as mp
 import cv2
 
-# 初始化模型
-app = FaceAnalysis(name='buffalo_l')
+mp_face = mp.solutions.face_detection
 
-app.prepare(ctx_id=0)
+detector = mp_face.FaceDetection(
+    model_selection=0,
+    min_detection_confidence=0.5
+)
 
 def detect_faces(image):
+    rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    results = detector.process(rgb)
 
-    # 转 BGR
-    img = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    faces = []
 
-    # 人脸检测
-    faces = app.get(img)
+    if results.detections:
+        for detection in results.detections:
+            bbox = detection.location_data.relative_bounding_box
+            faces.append(bbox)
 
     return faces
